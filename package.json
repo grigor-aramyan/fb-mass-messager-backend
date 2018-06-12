@@ -1,0 +1,19 @@
+{
+  "name": "fb_mass_messager_backend",
+  "version": "1.0.0",
+  "description": "Node/Express backend engine for FB-Mass-Messager app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grigor-aramyan/fb-mass-messager-backend.git"
+  },
+  "author": "Grigori Aramyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grigor-aramyan/fb-mass-messager-backend/issues"
+  },
+  "homepage": "https://github.com/grigor-aramyan/fb-mass-messager-backend#readme"
+}
