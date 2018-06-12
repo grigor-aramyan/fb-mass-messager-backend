@@ -2,7 +2,7 @@
   "name": "fb_mass_messager_backend",
   "version": "1.0.0",
   "description": "Node/Express backend engine for FB-Mass-Messager app",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/grigor-aramyan/fb-mass-messager-backend/issues"
   },
-  "homepage": "https://github.com/grigor-aramyan/fb-mass-messager-backend#readme"
+  "homepage": "https://github.com/grigor-aramyan/fb-mass-messager-backend#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "facebook-chat-api": "^1.6.0"
+  }
 }
