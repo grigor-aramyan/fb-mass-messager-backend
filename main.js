@@ -7,9 +7,50 @@ const port = 3000;
 
 let fbApi;
 let currentUserId;
+let friendList = [];
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.post('/login', (req, res) => {
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    login({email: email, password: password}, (err, api) => {
+        if(err) {
+            const error = `{"error": "Login failed!"}`;
+
+            return res.json(JSON.parse(error));
+        }
+
+        currentUserId = api.getCurrentUserID();
+        fbApi = api;
+
+        api.getFriendsList((err, data) => {
+            if(err) {
+                return res.json(JSON.parse(`{"error": "can't fetch friends list"}`));
+            }
+
+            let friendsString = "";
+            for(i = 0; i < data.length; i++) {
+                if(!data[i].isFriend) {
+                    continue;
+                }
+
+                friendList.push({
+                    userId: data[i].userID,
+                    name: data[i].firstName
+                    });
+
+                //id--name--profilePic
+                friendsString += data[i].userID + "---" + data[i].fullName + "---" + data[i].profilePicture + "::::";
+            }
+
+            res.json(`{"data": "${friendsString}"}`);
+        });
+    })
+})
 
 app.get('/logout', (req, res) => {
     fbApi.logout((err) => {
