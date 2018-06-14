@@ -59,9 +59,18 @@ app.get('/logout', (req, res) => {
         } else {
             fbApi = null;
             currentUserId = null;
+            friendList = [];
             return res.json(JSON.parse(`{"data": "Logged Out"}`));
         }
     })
+})
+
+app.get('/current_user_id', (req, res) => {
+    if(currentUserId != undefined) {
+        return res.json(JSON.parse(`{"userID": "${currentUserId}"}`));
+    } else {
+        return res.json(JSON.parse(`{"error": "id undefined"}`));
+    }
 })
 
 app.use((err, req, res, next) => {
