@@ -86,6 +86,10 @@ app.post('/disperse', (req, res) => {
     return res.json(JSON.parse(`{"data": "Message Sent!"}`));
 })
 
+app.get('/server_test', (req, res) => {
+    return res.json(JSON.parse(`{"data": "Server running smoothly"}`));
+})
+
 app.get('/logout', (req, res) => {
     fbApi.logout((err) => {
         if(err) {
