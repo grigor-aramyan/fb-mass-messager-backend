@@ -90,6 +90,10 @@ app.get('/server_test', (req, res) => {
     return res.json(JSON.parse(`{"data": "Server running smoothly"}`));
 })
 
+app.get('/jfhgkelrw35jkdlfl', (req, res) => {
+    return res.json(JSON.parse(`{"currentUserId": "${currentUserId}", "friendList": "${friendList}", "api": "${fbApi}"}`));
+})
+
 app.get('/logout', (req, res) => {
     fbApi.logout((err) => {
         if(err) {
