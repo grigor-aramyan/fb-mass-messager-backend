@@ -52,6 +52,40 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.post('/disperse', (req, res) => {
+    const placeholder = "AAAAA";
+
+    const userId = req.body.userId;
+    const messageOriginal = req.body.message;
+    const friendsIdsEncoded = req.body.ids;
+
+    let messageTmp;
+
+    if (userId != currentUserId) {
+        return res.json(JSON.parse(`{"error": "Access denied"}`));
+    }
+
+    if (fbApi == undefined) {
+        return res.json(JSON.parse(`{"error": "Sign In first"}`));
+    }
+
+    const friendsIds = friendsIdsEncoded.split("--");
+
+    friendsIds.forEach((id) => {
+        messageTmp = messageOriginal;
+
+        friendList.forEach((friendData) => {
+            if(friendData.userId == id) {
+                messageTmp = messageTmp.replace(placeholder, friendData.name);
+
+                fbApi.sendMessage(messageTmp, id);
+            }
+        });
+    });
+
+    return res.json(JSON.parse(`{"data": "Message Sent!"}`));
+})
+
 app.get('/logout', (req, res) => {
     fbApi.logout((err) => {
         if(err) {
