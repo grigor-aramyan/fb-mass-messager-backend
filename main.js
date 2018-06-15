@@ -121,7 +121,7 @@ app.use((err, req, res, next) => {
     res.status(500).end('Error occurred!');
 })
 
-app.listen(port, (err) => {
+app.listen(process.env.PORT, (err) => {
     if(err) {
         return console.log("something bad happened: " + err);
     }
